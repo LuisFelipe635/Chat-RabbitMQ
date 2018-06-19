@@ -8,9 +8,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class Chat {
-    
+
     public static void main(String[] argv) throws Exception {
         String queueName;
+        
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername("zezinho");
         factory.setPassword("zezinho");
@@ -19,7 +20,7 @@ public class Chat {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         
-        System.out.println("User: ");
+        System.out.print("User: ");
         Scanner s = new Scanner (System.in);
         queueName = s.nextLine();
  
@@ -32,6 +33,7 @@ public class Chat {
                 throws IOException {
                     
                 String message = new String(body, "UTF-8");
+                System.out.println();
                 System.out.println(message);
             }
         };
@@ -40,22 +42,22 @@ public class Chat {
         
         String msg;
         String queueKey = "";
-        System.out.print(">>");
+        System.out.print(">> ");
         
         while (true) {
             msg = s.nextLine();
             if (msg.startsWith("@")) {
                 queueKey = msg.substring(1);
-                System.out.print(queueKey + ">>");
+                System.out.print("@" + queueKey + ">> ");
             } 
             else {
-                System.out.print(queueKey + ">>");
+                System.out.print("@" + queueKey + ">> ");
+                DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
+                Date data = new Date();
+                String dataS = dateTime.format(data);
+                String send = "(" + dataS + ") " + queueName + " diz: " + msg;
+                channel.basicPublish("", queueKey, null, send.getBytes("UTF-8"));
             }
-            DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
-            Date data = new Date();
-            String dataS = dateTime.format(data);
-            String send = "(" + dataS + ")" + queueName + " diz: " + msg;
-            channel.basicPublish("", queueKey, null, send.getBytes("UTF-8"));
         }
     }
 }
