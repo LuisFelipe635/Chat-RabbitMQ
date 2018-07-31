@@ -91,17 +91,49 @@ public final class MensagemProto {
         getGrupoBytes();
 
     /**
-     * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+     * <pre>
+     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+     * </pre>
+     *
+     * <code>string tipo = 5;</code>
      */
-    boolean hasConteudo();
+    java.lang.String getTipo();
     /**
-     * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+     * <pre>
+     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+     * </pre>
+     *
+     * <code>string tipo = 5;</code>
      */
-    br.ufs.dcomp.chat.MensagemProto.Conteudo getConteudo();
+    com.google.protobuf.ByteString
+        getTipoBytes();
+
     /**
-     * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+     * <pre>
+     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+     * </pre>
+     *
+     * <code>string nome = 6;</code>
      */
-    br.ufs.dcomp.chat.MensagemProto.ConteudoOrBuilder getConteudoOrBuilder();
+    java.lang.String getNome();
+    /**
+     * <pre>
+     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+     * </pre>
+     *
+     * <code>string nome = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getNomeBytes();
+
+    /**
+     * <pre>
+     * Sequência de bytes que compõe o corpo da mensagem
+     * </pre>
+     *
+     * <code>bytes corpo = 7;</code>
+     */
+    com.google.protobuf.ByteString getCorpo();
   }
   /**
    * Protobuf type {@code br.ufs.dcomp.chat.Mensagem}
@@ -120,6 +152,9 @@ public final class MensagemProto {
       data_ = "";
       hora_ = "";
       grupo_ = "";
+      tipo_ = "";
+      nome_ = "";
+      corpo_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -171,16 +206,20 @@ public final class MensagemProto {
               break;
             }
             case 42: {
-              br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder subBuilder = null;
-              if (conteudo_ != null) {
-                subBuilder = conteudo_.toBuilder();
-              }
-              conteudo_ = input.readMessage(br.ufs.dcomp.chat.MensagemProto.Conteudo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(conteudo_);
-                conteudo_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              tipo_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              nome_ = s;
+              break;
+            }
+            case 58: {
+
+              corpo_ = input.readBytes();
               break;
             }
             default: {
@@ -383,25 +422,101 @@ public final class MensagemProto {
       }
     }
 
-    public static final int CONTEUDO_FIELD_NUMBER = 5;
-    private br.ufs.dcomp.chat.MensagemProto.Conteudo conteudo_;
+    public static final int TIPO_FIELD_NUMBER = 5;
+    private volatile java.lang.Object tipo_;
     /**
-     * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+     * <pre>
+     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+     * </pre>
+     *
+     * <code>string tipo = 5;</code>
      */
-    public boolean hasConteudo() {
-      return conteudo_ != null;
+    public java.lang.String getTipo() {
+      java.lang.Object ref = tipo_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tipo_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+     * <pre>
+     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+     * </pre>
+     *
+     * <code>string tipo = 5;</code>
      */
-    public br.ufs.dcomp.chat.MensagemProto.Conteudo getConteudo() {
-      return conteudo_ == null ? br.ufs.dcomp.chat.MensagemProto.Conteudo.getDefaultInstance() : conteudo_;
+    public com.google.protobuf.ByteString
+        getTipoBytes() {
+      java.lang.Object ref = tipo_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tipo_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NOME_FIELD_NUMBER = 6;
+    private volatile java.lang.Object nome_;
+    /**
+     * <pre>
+     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+     * </pre>
+     *
+     * <code>string nome = 6;</code>
+     */
+    public java.lang.String getNome() {
+      java.lang.Object ref = nome_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        nome_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+     * <pre>
+     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+     * </pre>
+     *
+     * <code>string nome = 6;</code>
      */
-    public br.ufs.dcomp.chat.MensagemProto.ConteudoOrBuilder getConteudoOrBuilder() {
-      return getConteudo();
+    public com.google.protobuf.ByteString
+        getNomeBytes() {
+      java.lang.Object ref = nome_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nome_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CORPO_FIELD_NUMBER = 7;
+    private com.google.protobuf.ByteString corpo_;
+    /**
+     * <pre>
+     * Sequência de bytes que compõe o corpo da mensagem
+     * </pre>
+     *
+     * <code>bytes corpo = 7;</code>
+     */
+    public com.google.protobuf.ByteString getCorpo() {
+      return corpo_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -430,8 +545,14 @@ public final class MensagemProto {
       if (!getGrupoBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, grupo_);
       }
-      if (conteudo_ != null) {
-        output.writeMessage(5, getConteudo());
+      if (!getTipoBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, tipo_);
+      }
+      if (!getNomeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, nome_);
+      }
+      if (!corpo_.isEmpty()) {
+        output.writeBytes(7, corpo_);
       }
       unknownFields.writeTo(output);
     }
@@ -454,9 +575,15 @@ public final class MensagemProto {
       if (!getGrupoBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, grupo_);
       }
-      if (conteudo_ != null) {
+      if (!getTipoBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, tipo_);
+      }
+      if (!getNomeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, nome_);
+      }
+      if (!corpo_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getConteudo());
+          .computeBytesSize(7, corpo_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -482,11 +609,12 @@ public final class MensagemProto {
           .equals(other.getHora());
       result = result && getGrupo()
           .equals(other.getGrupo());
-      result = result && (hasConteudo() == other.hasConteudo());
-      if (hasConteudo()) {
-        result = result && getConteudo()
-            .equals(other.getConteudo());
-      }
+      result = result && getTipo()
+          .equals(other.getTipo());
+      result = result && getNome()
+          .equals(other.getNome());
+      result = result && getCorpo()
+          .equals(other.getCorpo());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -506,10 +634,12 @@ public final class MensagemProto {
       hash = (53 * hash) + getHora().hashCode();
       hash = (37 * hash) + GRUPO_FIELD_NUMBER;
       hash = (53 * hash) + getGrupo().hashCode();
-      if (hasConteudo()) {
-        hash = (37 * hash) + CONTEUDO_FIELD_NUMBER;
-        hash = (53 * hash) + getConteudo().hashCode();
-      }
+      hash = (37 * hash) + TIPO_FIELD_NUMBER;
+      hash = (53 * hash) + getTipo().hashCode();
+      hash = (37 * hash) + NOME_FIELD_NUMBER;
+      hash = (53 * hash) + getNome().hashCode();
+      hash = (37 * hash) + CORPO_FIELD_NUMBER;
+      hash = (53 * hash) + getCorpo().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -651,12 +781,12 @@ public final class MensagemProto {
 
         grupo_ = "";
 
-        if (conteudoBuilder_ == null) {
-          conteudo_ = null;
-        } else {
-          conteudo_ = null;
-          conteudoBuilder_ = null;
-        }
+        tipo_ = "";
+
+        nome_ = "";
+
+        corpo_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
@@ -687,11 +817,9 @@ public final class MensagemProto {
         result.data_ = data_;
         result.hora_ = hora_;
         result.grupo_ = grupo_;
-        if (conteudoBuilder_ == null) {
-          result.conteudo_ = conteudo_;
-        } else {
-          result.conteudo_ = conteudoBuilder_.build();
-        }
+        result.tipo_ = tipo_;
+        result.nome_ = nome_;
+        result.corpo_ = corpo_;
         onBuilt();
         return result;
       }
@@ -756,8 +884,16 @@ public final class MensagemProto {
           grupo_ = other.grupo_;
           onChanged();
         }
-        if (other.hasConteudo()) {
-          mergeConteudo(other.getConteudo());
+        if (!other.getTipo().isEmpty()) {
+          tipo_ = other.tipo_;
+          onChanged();
+        }
+        if (!other.getNome().isEmpty()) {
+          nome_ = other.nome_;
+          onChanged();
+        }
+        if (other.getCorpo() != com.google.protobuf.ByteString.EMPTY) {
+          setCorpo(other.getCorpo());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1144,121 +1280,223 @@ public final class MensagemProto {
         return this;
       }
 
-      private br.ufs.dcomp.chat.MensagemProto.Conteudo conteudo_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          br.ufs.dcomp.chat.MensagemProto.Conteudo, br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder, br.ufs.dcomp.chat.MensagemProto.ConteudoOrBuilder> conteudoBuilder_;
+      private java.lang.Object tipo_ = "";
       /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+       * <pre>
+       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+       * </pre>
+       *
+       * <code>string tipo = 5;</code>
        */
-      public boolean hasConteudo() {
-        return conteudoBuilder_ != null || conteudo_ != null;
-      }
-      /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
-       */
-      public br.ufs.dcomp.chat.MensagemProto.Conteudo getConteudo() {
-        if (conteudoBuilder_ == null) {
-          return conteudo_ == null ? br.ufs.dcomp.chat.MensagemProto.Conteudo.getDefaultInstance() : conteudo_;
+      public java.lang.String getTipo() {
+        java.lang.Object ref = tipo_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tipo_ = s;
+          return s;
         } else {
-          return conteudoBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+       * <pre>
+       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+       * </pre>
+       *
+       * <code>string tipo = 5;</code>
        */
-      public Builder setConteudo(br.ufs.dcomp.chat.MensagemProto.Conteudo value) {
-        if (conteudoBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          conteudo_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getTipoBytes() {
+        java.lang.Object ref = tipo_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tipo_ = b;
+          return b;
         } else {
-          conteudoBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+       * <pre>
+       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+       * </pre>
+       *
+       * <code>string tipo = 5;</code>
        */
-      public Builder setConteudo(
-          br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder builderForValue) {
-        if (conteudoBuilder_ == null) {
-          conteudo_ = builderForValue.build();
-          onChanged();
-        } else {
-          conteudoBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
-       */
-      public Builder mergeConteudo(br.ufs.dcomp.chat.MensagemProto.Conteudo value) {
-        if (conteudoBuilder_ == null) {
-          if (conteudo_ != null) {
-            conteudo_ =
-              br.ufs.dcomp.chat.MensagemProto.Conteudo.newBuilder(conteudo_).mergeFrom(value).buildPartial();
-          } else {
-            conteudo_ = value;
-          }
-          onChanged();
-        } else {
-          conteudoBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
-       */
-      public Builder clearConteudo() {
-        if (conteudoBuilder_ == null) {
-          conteudo_ = null;
-          onChanged();
-        } else {
-          conteudo_ = null;
-          conteudoBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
-       */
-      public br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder getConteudoBuilder() {
-        
+      public Builder setTipo(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tipo_ = value;
         onChanged();
-        return getConteudoFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+       * <pre>
+       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+       * </pre>
+       *
+       * <code>string tipo = 5;</code>
        */
-      public br.ufs.dcomp.chat.MensagemProto.ConteudoOrBuilder getConteudoOrBuilder() {
-        if (conteudoBuilder_ != null) {
-          return conteudoBuilder_.getMessageOrBuilder();
+      public Builder clearTipo() {
+        
+        tipo_ = getDefaultInstance().getTipo();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
+       * </pre>
+       *
+       * <code>string tipo = 5;</code>
+       */
+      public Builder setTipoBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tipo_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object nome_ = "";
+      /**
+       * <pre>
+       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+       * </pre>
+       *
+       * <code>string nome = 6;</code>
+       */
+      public java.lang.String getNome() {
+        java.lang.Object ref = nome_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          nome_ = s;
+          return s;
         } else {
-          return conteudo_ == null ?
-              br.ufs.dcomp.chat.MensagemProto.Conteudo.getDefaultInstance() : conteudo_;
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.br.ufs.dcomp.chat.Conteudo conteudo = 5;</code>
+       * <pre>
+       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+       * </pre>
+       *
+       * <code>string nome = 6;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          br.ufs.dcomp.chat.MensagemProto.Conteudo, br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder, br.ufs.dcomp.chat.MensagemProto.ConteudoOrBuilder> 
-          getConteudoFieldBuilder() {
-        if (conteudoBuilder_ == null) {
-          conteudoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              br.ufs.dcomp.chat.MensagemProto.Conteudo, br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder, br.ufs.dcomp.chat.MensagemProto.ConteudoOrBuilder>(
-                  getConteudo(),
-                  getParentForChildren(),
-                  isClean());
-          conteudo_ = null;
+      public com.google.protobuf.ByteString
+          getNomeBytes() {
+        java.lang.Object ref = nome_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          nome_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
         }
-        return conteudoBuilder_;
+      }
+      /**
+       * <pre>
+       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+       * </pre>
+       *
+       * <code>string nome = 6;</code>
+       */
+      public Builder setNome(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        nome_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+       * </pre>
+       *
+       * <code>string nome = 6;</code>
+       */
+      public Builder clearNome() {
+        
+        nome_ = getDefaultInstance().getNome();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
+       * </pre>
+       *
+       * <code>string nome = 6;</code>
+       */
+      public Builder setNomeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        nome_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString corpo_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       * Sequência de bytes que compõe o corpo da mensagem
+       * </pre>
+       *
+       * <code>bytes corpo = 7;</code>
+       */
+      public com.google.protobuf.ByteString getCorpo() {
+        return corpo_;
+      }
+      /**
+       * <pre>
+       * Sequência de bytes que compõe o corpo da mensagem
+       * </pre>
+       *
+       * <code>bytes corpo = 7;</code>
+       */
+      public Builder setCorpo(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        corpo_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Sequência de bytes que compõe o corpo da mensagem
+       * </pre>
+       *
+       * <code>bytes corpo = 7;</code>
+       */
+      public Builder clearCorpo() {
+        
+        corpo_ = getDefaultInstance().getCorpo();
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -1313,861 +1551,11 @@ public final class MensagemProto {
 
   }
 
-  public interface ConteudoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:br.ufs.dcomp.chat.Conteudo)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-     * </pre>
-     *
-     * <code>string tipo = 1;</code>
-     */
-    java.lang.String getTipo();
-    /**
-     * <pre>
-     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-     * </pre>
-     *
-     * <code>string tipo = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getTipoBytes();
-
-    /**
-     * <pre>
-     * Sequência de bytes que compõe o corpo da mensagem
-     * </pre>
-     *
-     * <code>bytes corpo = 2;</code>
-     */
-    com.google.protobuf.ByteString getCorpo();
-
-    /**
-     * <pre>
-     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-     * </pre>
-     *
-     * <code>string nome = 3;</code>
-     */
-    java.lang.String getNome();
-    /**
-     * <pre>
-     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-     * </pre>
-     *
-     * <code>string nome = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getNomeBytes();
-  }
-  /**
-   * Protobuf type {@code br.ufs.dcomp.chat.Conteudo}
-   */
-  public  static final class Conteudo extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:br.ufs.dcomp.chat.Conteudo)
-      ConteudoOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Conteudo.newBuilder() to construct.
-    private Conteudo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Conteudo() {
-      tipo_ = "";
-      corpo_ = com.google.protobuf.ByteString.EMPTY;
-      nome_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Conteudo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              tipo_ = s;
-              break;
-            }
-            case 18: {
-
-              corpo_ = input.readBytes();
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              nome_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return br.ufs.dcomp.chat.MensagemProto.internal_static_br_ufs_dcomp_chat_Conteudo_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return br.ufs.dcomp.chat.MensagemProto.internal_static_br_ufs_dcomp_chat_Conteudo_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              br.ufs.dcomp.chat.MensagemProto.Conteudo.class, br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder.class);
-    }
-
-    public static final int TIPO_FIELD_NUMBER = 1;
-    private volatile java.lang.Object tipo_;
-    /**
-     * <pre>
-     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-     * </pre>
-     *
-     * <code>string tipo = 1;</code>
-     */
-    public java.lang.String getTipo() {
-      java.lang.Object ref = tipo_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        tipo_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-     * </pre>
-     *
-     * <code>string tipo = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTipoBytes() {
-      java.lang.Object ref = tipo_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        tipo_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int CORPO_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString corpo_;
-    /**
-     * <pre>
-     * Sequência de bytes que compõe o corpo da mensagem
-     * </pre>
-     *
-     * <code>bytes corpo = 2;</code>
-     */
-    public com.google.protobuf.ByteString getCorpo() {
-      return corpo_;
-    }
-
-    public static final int NOME_FIELD_NUMBER = 3;
-    private volatile java.lang.Object nome_;
-    /**
-     * <pre>
-     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-     * </pre>
-     *
-     * <code>string nome = 3;</code>
-     */
-    public java.lang.String getNome() {
-      java.lang.Object ref = nome_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        nome_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-     * </pre>
-     *
-     * <code>string nome = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNomeBytes() {
-      java.lang.Object ref = nome_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        nome_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getTipoBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tipo_);
-      }
-      if (!corpo_.isEmpty()) {
-        output.writeBytes(2, corpo_);
-      }
-      if (!getNomeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, nome_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getTipoBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tipo_);
-      }
-      if (!corpo_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, corpo_);
-      }
-      if (!getNomeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, nome_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof br.ufs.dcomp.chat.MensagemProto.Conteudo)) {
-        return super.equals(obj);
-      }
-      br.ufs.dcomp.chat.MensagemProto.Conteudo other = (br.ufs.dcomp.chat.MensagemProto.Conteudo) obj;
-
-      boolean result = true;
-      result = result && getTipo()
-          .equals(other.getTipo());
-      result = result && getCorpo()
-          .equals(other.getCorpo());
-      result = result && getNome()
-          .equals(other.getNome());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TIPO_FIELD_NUMBER;
-      hash = (53 * hash) + getTipo().hashCode();
-      hash = (37 * hash) + CORPO_FIELD_NUMBER;
-      hash = (53 * hash) + getCorpo().hashCode();
-      hash = (37 * hash) + NOME_FIELD_NUMBER;
-      hash = (53 * hash) + getNome().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(br.ufs.dcomp.chat.MensagemProto.Conteudo prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code br.ufs.dcomp.chat.Conteudo}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:br.ufs.dcomp.chat.Conteudo)
-        br.ufs.dcomp.chat.MensagemProto.ConteudoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return br.ufs.dcomp.chat.MensagemProto.internal_static_br_ufs_dcomp_chat_Conteudo_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return br.ufs.dcomp.chat.MensagemProto.internal_static_br_ufs_dcomp_chat_Conteudo_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                br.ufs.dcomp.chat.MensagemProto.Conteudo.class, br.ufs.dcomp.chat.MensagemProto.Conteudo.Builder.class);
-      }
-
-      // Construct using br.ufs.dcomp.chat.MensagemProto.Conteudo.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        tipo_ = "";
-
-        corpo_ = com.google.protobuf.ByteString.EMPTY;
-
-        nome_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return br.ufs.dcomp.chat.MensagemProto.internal_static_br_ufs_dcomp_chat_Conteudo_descriptor;
-      }
-
-      @java.lang.Override
-      public br.ufs.dcomp.chat.MensagemProto.Conteudo getDefaultInstanceForType() {
-        return br.ufs.dcomp.chat.MensagemProto.Conteudo.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public br.ufs.dcomp.chat.MensagemProto.Conteudo build() {
-        br.ufs.dcomp.chat.MensagemProto.Conteudo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public br.ufs.dcomp.chat.MensagemProto.Conteudo buildPartial() {
-        br.ufs.dcomp.chat.MensagemProto.Conteudo result = new br.ufs.dcomp.chat.MensagemProto.Conteudo(this);
-        result.tipo_ = tipo_;
-        result.corpo_ = corpo_;
-        result.nome_ = nome_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof br.ufs.dcomp.chat.MensagemProto.Conteudo) {
-          return mergeFrom((br.ufs.dcomp.chat.MensagemProto.Conteudo)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(br.ufs.dcomp.chat.MensagemProto.Conteudo other) {
-        if (other == br.ufs.dcomp.chat.MensagemProto.Conteudo.getDefaultInstance()) return this;
-        if (!other.getTipo().isEmpty()) {
-          tipo_ = other.tipo_;
-          onChanged();
-        }
-        if (other.getCorpo() != com.google.protobuf.ByteString.EMPTY) {
-          setCorpo(other.getCorpo());
-        }
-        if (!other.getNome().isEmpty()) {
-          nome_ = other.nome_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        br.ufs.dcomp.chat.MensagemProto.Conteudo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (br.ufs.dcomp.chat.MensagemProto.Conteudo) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object tipo_ = "";
-      /**
-       * <pre>
-       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-       * </pre>
-       *
-       * <code>string tipo = 1;</code>
-       */
-      public java.lang.String getTipo() {
-        java.lang.Object ref = tipo_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          tipo_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-       * </pre>
-       *
-       * <code>string tipo = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTipoBytes() {
-        java.lang.Object ref = tipo_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          tipo_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-       * </pre>
-       *
-       * <code>string tipo = 1;</code>
-       */
-      public Builder setTipo(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        tipo_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-       * </pre>
-       *
-       * <code>string tipo = 1;</code>
-       */
-      public Builder clearTipo() {
-        
-        tipo_ = getDefaultInstance().getTipo();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Tipo do conteúdo no padrão de tipos MIME. Exemplos: "text/plain", "image/png" 
-       * </pre>
-       *
-       * <code>string tipo = 1;</code>
-       */
-      public Builder setTipoBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        tipo_ = value;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString corpo_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <pre>
-       * Sequência de bytes que compõe o corpo da mensagem
-       * </pre>
-       *
-       * <code>bytes corpo = 2;</code>
-       */
-      public com.google.protobuf.ByteString getCorpo() {
-        return corpo_;
-      }
-      /**
-       * <pre>
-       * Sequência de bytes que compõe o corpo da mensagem
-       * </pre>
-       *
-       * <code>bytes corpo = 2;</code>
-       */
-      public Builder setCorpo(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        corpo_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Sequência de bytes que compõe o corpo da mensagem
-       * </pre>
-       *
-       * <code>bytes corpo = 2;</code>
-       */
-      public Builder clearCorpo() {
-        
-        corpo_ = getDefaultInstance().getCorpo();
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object nome_ = "";
-      /**
-       * <pre>
-       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-       * </pre>
-       *
-       * <code>string nome = 3;</code>
-       */
-      public java.lang.String getNome() {
-        java.lang.Object ref = nome_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          nome_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-       * </pre>
-       *
-       * <code>string nome = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNomeBytes() {
-        java.lang.Object ref = nome_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          nome_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-       * </pre>
-       *
-       * <code>string nome = 3;</code>
-       */
-      public Builder setNome(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        nome_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-       * </pre>
-       *
-       * <code>string nome = 3;</code>
-       */
-      public Builder clearNome() {
-        
-        nome_ = getDefaultInstance().getNome();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Nome do conteúdo, se existente. Exemplos: "logo_ufs.png", "index.html"
-       * </pre>
-       *
-       * <code>string nome = 3;</code>
-       */
-      public Builder setNomeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        nome_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:br.ufs.dcomp.chat.Conteudo)
-    }
-
-    // @@protoc_insertion_point(class_scope:br.ufs.dcomp.chat.Conteudo)
-    private static final br.ufs.dcomp.chat.MensagemProto.Conteudo DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new br.ufs.dcomp.chat.MensagemProto.Conteudo();
-    }
-
-    public static br.ufs.dcomp.chat.MensagemProto.Conteudo getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Conteudo>
-        PARSER = new com.google.protobuf.AbstractParser<Conteudo>() {
-      @java.lang.Override
-      public Conteudo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Conteudo(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Conteudo> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Conteudo> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public br.ufs.dcomp.chat.MensagemProto.Conteudo getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_br_ufs_dcomp_chat_Mensagem_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_br_ufs_dcomp_chat_Mensagem_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_br_ufs_dcomp_chat_Conteudo_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_br_ufs_dcomp_chat_Conteudo_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2177,13 +1565,11 @@ public final class MensagemProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016mensagem.proto\022\021br.ufs.dcomp.chat\"u\n\010M" +
+      "\n\016mensagem.proto\022\021br.ufs.dcomp.chat\"q\n\010M" +
       "ensagem\022\017\n\007emissor\030\001 \001(\t\022\014\n\004data\030\002 \001(\t\022\014" +
-      "\n\004hora\030\003 \001(\t\022\r\n\005grupo\030\004 \001(\t\022-\n\010conteudo\030" +
-      "\005 \001(\0132\033.br.ufs.dcomp.chat.Conteudo\"5\n\010Co" +
-      "nteudo\022\014\n\004tipo\030\001 \001(\t\022\r\n\005corpo\030\002 \001(\014\022\014\n\004n" +
-      "ome\030\003 \001(\tB\"\n\021br.ufs.dcomp.chatB\rMensagem" +
-      "Protob\006proto3"
+      "\n\004hora\030\003 \001(\t\022\r\n\005grupo\030\004 \001(\t\022\014\n\004tipo\030\005 \001(" +
+      "\t\022\014\n\004nome\030\006 \001(\t\022\r\n\005corpo\030\007 \001(\014B\"\n\021br.ufs" +
+      ".dcomp.chatB\rMensagemProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2202,13 +1588,7 @@ public final class MensagemProto {
     internal_static_br_ufs_dcomp_chat_Mensagem_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_br_ufs_dcomp_chat_Mensagem_descriptor,
-        new java.lang.String[] { "Emissor", "Data", "Hora", "Grupo", "Conteudo", });
-    internal_static_br_ufs_dcomp_chat_Conteudo_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_br_ufs_dcomp_chat_Conteudo_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_br_ufs_dcomp_chat_Conteudo_descriptor,
-        new java.lang.String[] { "Tipo", "Corpo", "Nome", });
+        new java.lang.String[] { "Emissor", "Data", "Hora", "Grupo", "Tipo", "Nome", "Corpo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
