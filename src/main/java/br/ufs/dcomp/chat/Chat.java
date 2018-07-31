@@ -98,6 +98,7 @@ public class Chat {
         String msg;
         String queueKey = "";
         String groupName = "";
+        String groupNameFile = "";
         System.out.print(">> ");
         
         while (true) {
@@ -109,23 +110,39 @@ public class Chat {
                 }
                 if (msg.startsWith("!new")) {
                     groupName = msg.substring(10);
+                    groupNameFile = groupName.concat("-files");
+                    
                     channel.exchangeDeclare(groupName, "fanout");
                     channel.queueBind(queueName, groupName, "");
+                    
+                    channelFile.exchangeDeclare(groupNameFile, "fanout");
+                    channelFile.queueBind(queueNameFile, groupNameFile, "");
+                    
                     System.out.print(queueKey + ">> ");
                 }
                 if (msg.startsWith("!add")) {
                     String[] command = msg.split("\\s");
+                    
                     channel.queueBind(command[1], command[2], ""); // queueBind(nomeUsuario, nomeGrupo, "");
+                    channelFile.queueBind(command[1].concat("-files"), command[2].concat("-files"), "");
+                    
                     System.out.print(queueKey + ">> ");
                 }
                 if (msg.startsWith("!del")) {
                     String[] command = msg.split("\\s");
+                    
                     channel.queueUnbind(command[1], command[2], ""); // queueUnbind(nomeUsuario, nomeGrupo, "");
+                    channelFile.queueUnbind(command[1].concat("-files"), command[2].concat("-files"), "");
+                    
                     System.out.print(queueKey + ">> ");
                 }
                 if (msg.startsWith("!rem")) {
                     groupName = msg.substring(13);
+                    groupNameFile = groupName.concat("-files");
+                    
                     channel.exchangeDelete(groupName);
+                    channelFile.exchangeDelete(groupNameFile);
+                    
                     System.out.print(queueKey + ">> ");
                 }
                 if (msg.startsWith("!up")) {
