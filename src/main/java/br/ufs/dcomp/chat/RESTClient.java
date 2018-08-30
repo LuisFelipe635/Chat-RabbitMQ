@@ -28,7 +28,7 @@ public class RESTClient {
         try {
             // JAVA 8 como pré-requisito (ver README.md)
             String username = "zezinho";
-            String password = "01001100";
+            String password = "zezinho";
      
             String usernameAndPassword = username + ":" + password;
             String authorizationHeaderName = "Authorization";
