@@ -54,7 +54,7 @@ public class Envio {
         public void run() {
             ConnectionFactory factory = new ConnectionFactory();
             factory.setUsername("zezinho");
-            factory.setPassword("01001100");
+            factory.setPassword("zezinho");
             factory.setHost("ec2-34-220-179-43.us-west-2.compute.amazonaws.com");
             factory.setVirtualHost("/");
             
