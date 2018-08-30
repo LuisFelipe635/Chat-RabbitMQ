@@ -2,6 +2,7 @@ package br.ufs.dcomp.chat;
 
 import com.rabbitmq.client.*;
 import com.google.protobuf.*;
+import com.google.gson.*;
 import java.util.*;
 import java.io.*;
 import java.nio.file.*;
@@ -16,7 +17,7 @@ public class Chat {
          
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername("zezinho");
-        factory.setPassword("zezinho");
+        factory.setPassword("01001100");
         factory.setHost("ec2-34-220-179-43.us-west-2.compute.amazonaws.com");
         factory.setVirtualHost("/");
         Connection connection = factory.newConnection();
@@ -95,15 +96,23 @@ public class Chat {
         channelFile.basicConsume(queueNameFile, true, consumerFile);
         
         DateFormat dateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        boolean control = true;
         String msg;
         String queueKey = "";
         String groupName = "";
         String groupNameFile = "";
+        System.out.print("Welcome! Here are some useful commands:\n\t@username - Chat with an user\n\t#groupname - Chat with a group\n\t"+
+                        "!newGroup group - Create a new group\n\t!addUser username group - Add an user into a given group\n\t"+
+                        "!delFromGroup username group - Remove an user from a given group\n\t!removeGroup group - Delete a group\n\t"+
+                        "!upload PATH - Upload a file\n\t!listUsers group - List all users of a given group\n\t!listGroups - List all groups\n\t"+
+                        "!quit - Closes the chat\n\n");
         System.out.print(">> ");
         
-        while (true) {
+        while (control) {
             try {
                 msg = s.nextLine();
+                if (msg.equals("") || msg.isEmpty())
+                    System.out.print(queueKey + ">> ");
                 if (msg.startsWith("@") || msg.startsWith("#")) {
                     queueKey = msg;
                     System.out.print(queueKey + ">> ");
@@ -164,6 +173,24 @@ public class Chat {
                     Envio envio = new Envio(queueName, splitData[0], splitData[1], queueKey, daWae);
                     envio.main(new String[]{});
                 }
+                if(msg.startsWith("!listGroups")){
+                    String user = queueKey.substring(1);
+                    String path = "/api/queues/%2F/" + user + "/bindings";
+                    RESTClient rest = new RESTClient(path);
+                    rest.main(new String[]{});
+                    System.out.print("\n" + queueKey + ">> ");
+                }
+                if(msg.startsWith("!listUsers")){
+                    String group = msg.substring(11);
+                    String path = "/api/exchanges/%2F/" + group + "/bindings/source";
+                    RESTClient rest = new RESTClient(path);
+                    rest.main(new String[]{});
+                    System.out.print("\n" + queueKey + ">> ");
+                }
+                if(msg.equals("!quit")){
+                    System.out.println("Thanks for use. See you again!");
+                    control = false;
+                }
                 if (!msg.substring(0,1).matches("\\p{Punct}")) {
                     if (queueKey.startsWith("@")) {
                         Date data = new Date();
@@ -210,5 +237,6 @@ public class Chat {
                     System.out.print(queueKey + ">> ");
             }
         }
+        System.exit(0);
     }
 }
